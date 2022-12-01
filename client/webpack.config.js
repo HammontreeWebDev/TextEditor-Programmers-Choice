@@ -2,7 +2,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // TODO: Add and configure workbox plugins for a service worker and manifest file.
@@ -25,24 +24,22 @@ module.exports = () => {
         title: 'Webpack Plugin'
       }),
       new MiniCssExtractPlugin(),
-      new WorkboxPlugin.GenerateSW(),
       new WebpackPwaManifest({
-        // TODO: Create a manifest.json:
-        filename: 'static/manifest.json',
-        name: 'J.A.T.E.',
-        short_name: 'JATE',
-        description: 'A simple text editor built with programmers in mind',
-        background_color: '#ffffff',
-        theme_color: '#5755d9',
-        display: 'standalone',
-        orientation: 'portrait',
-        fingerprints: false,
-        inject: false,
-        start_url: '/',
-        ios: {
-          'apple-mobile-web-app-title': 'JATE',
-          'apple-mobile-web-app-status-bar-style': '#5755d9',
-        }
+        name: 'Just Another Text Editor',
+        short_name: 'J.A.T.E.',
+        description: 'The programmers choice when it comes to text editors!',
+        background_color: '#7eb4e2',
+        fingerprints: true,
+        theme_color: '#7eb4e2',
+        start_url: './',
+        publicPath: './',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
+          },
+        ],
       }),
       new InjectManifest({
         swSrc: './src/sw.js',
