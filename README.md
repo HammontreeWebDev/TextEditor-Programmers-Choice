@@ -18,7 +18,7 @@
   Live Application: https://jate-programmerschoice.herokuapp.com/
 
   Preview:
-
+<img width="1728" alt="Screenshot 2022-12-02 at 12 20 45 AM" src="https://user-images.githubusercontent.com/113649683/205220754-3f75b24f-88f9-4448-8153-28718c9f3f46.png">
   
   ## License
   The MIT License (https://opensource.org/licenses/MIT)
