@@ -12,25 +12,25 @@ const initdb = async () =>
     },
   });
 
-// TODO: Add logic to a method that accepts some content and adds it to the database
+// Accept content from page and store in IndexedDB
 export const putDb = async (content) => {
-  if (db.objectStoreNames.contains('jate')) {
-    db.put('jate', 'content', content);
-  }
-  else {
-    console.error(`putDb not implemented: ${new Error}`);
-  }
+  console.log('Now adding data to the database!');
+  const database = await openDB('jate', 1);
+  const trans = database.transaction('jate', 'readwrite');
+  const dbData = trans.objectStore('jate');
+
+  dbData.put({ id: 1, value: content });
 }
 
-// TODO: Add logic for a method that gets all the content from the database
+// Grab all content for text editor from database
 export const getDb = async () => {
-  if (db.objectStoreNames.contains('jate')) {
-    const value = await db.get('jate', 'content');
-    return value;
-  }
-  else {
-    console.error('getDb not implemented');
-  }
+  console.log('Now getting data from the database!');
+  const database = await openDB('jate', 1);
+  const trans = database.transaction('jate', 'readonly');
+  const dbDataTrans = trans.objectStore('jate');
+  const dbData = dbDataTrans.get(1);
+  const response = dbData;
+  return response.value;
 };
 
 initdb();
