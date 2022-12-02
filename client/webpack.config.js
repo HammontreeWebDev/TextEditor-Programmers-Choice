@@ -22,6 +22,10 @@ module.exports = () => {
         template: './index.html',
         title: 'J.A.T.E.'
       }),
+      new InjectManifest({
+        swSrc: './sw.js',
+        swDest: 'sw.js',
+      }),
       new WebpackPwaManifest({
         name: 'Just Another Text Editor',
         short_name: 'J.A.T.E.',
@@ -39,10 +43,6 @@ module.exports = () => {
             destination: path.join('assets', 'icons'),
           },
         ],
-      }),
-      new InjectManifest({
-        swSrc: './sw.js',
-        swDest: 'service-worker.js',
       }),
     ],
 
